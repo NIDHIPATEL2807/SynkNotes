@@ -1,18 +1,32 @@
 {
-  "name": "frontend",
+  "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:5173 electron .",
+    "electron-pack": "vite build && electron-builder"
+  },
+  "main": "main.js",
+  "build": {
+    "appId": "com.yourname.notetaker",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "preload.js",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    }
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
     "@vitejs/plugin-react": "^4.4.1",
     "axios": "^1.11.0",
+    "electron-store": "^10.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
@@ -22,6 +36,9 @@
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "cross-env": "^10.0.0",
+    "electron": "^37.4.0",
+    "electron-builder": "^26.0.12",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
